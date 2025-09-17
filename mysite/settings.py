@@ -119,7 +119,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-	BASE_DIR / "static",	# contiendra "frontend" buildé
+	BASE_DIR / "static" / "frontend",	# contiendra "frontend" buildé
 ]
 
 # Default primary key field type
