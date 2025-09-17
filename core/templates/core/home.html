@@ -1,23 +1,23 @@
 {% load django_vite %}
-
 <!doctype html>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
 		<title>{% block title %}Django + Vue{% endblock %}</title>
-		{% vite_hmr_client %}           {# en dev, injecte HMR #}
-		{% vite_asset 'src/main.js' %}   {# charge main.js (dev: via Vite, prod: via manifest) #}
+
+		{# Vite: dev -> HMR ; prod -> manifest #}
+		{% vite_hmr_client %}
+		{% vite_asset 'src/main.js' %}
+
+		{# optionnel: zone pour ajouter d'autres <head> depuis les pages #}
+		{% block extra_head %}{% endblock %}
 	</head>
 	<body>
 		<header>Mon Site</header>
-
 		<main>
-			<!-- Point de montage Vue -->
 			<div id="app"></div>
-
 			{% block content %}{% endblock %}
 		</main>
-
 		<footer>© 2025</footer>
 	</body>
 </html>

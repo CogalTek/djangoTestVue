@@ -9,7 +9,7 @@ export default defineConfig({
 		port: 5173
 	},
 	build: {
-		outDir: '../static/frontend',	// fichiers buildés -> Django static
+		outDir: '../static/frontend',
 		emptyOutDir: true,
 		manifest: true,
 		rollupOptions: {
