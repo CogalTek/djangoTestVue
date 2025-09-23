@@ -1,26 +1,29 @@
-{% load django_vite %}
+{% load static %}
 <!doctype html>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
-		<title>{% block title %}Django + Vue{% endblock %}</title>
+		<title>{% block title %}Mon Site{% endblock %}</title>
 
-		{# Vite: dev -> HMR ; prod -> manifest #}
-		{% vite_hmr_client %}
-		{% vite_asset 'src/main.js' %}
+		{% if USE_VUE and VUE_BUILD == "esm" %}
+			<script type="importmap">
+			{
+				"imports": {
+					"vue": "{% static 'vendor/vue.esm-browser.prod.js' %}"
+				}
+			}
+			</script>
+		{% endif %}
 
-		{# optionnel: zone pour ajouter d'autres <head> depuis les pages #}
 		{% block extra_head %}{% endblock %}
 	</head>
 	<body>
 		<header>Mon Site</header>
-		<main>
-			<div id="app"></div>
-			<script type="module" src="http://localhost:5173/@vite/client"></script>
-			<script type="module" src="http://localhost:5173/src/main.js"></script>
 
+		<main>
 			{% block content %}{% endblock %}
 		</main>
-		<footer>© 2025</footer>
+
+		{% block scripts %}{% endblock %}
 	</body>
 </html>
